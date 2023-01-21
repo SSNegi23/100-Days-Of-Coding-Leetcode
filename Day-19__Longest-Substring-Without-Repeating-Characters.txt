@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int len = s.size(), curlen = 0, max = 0;
+        vector<char> v1;
+        vector<char> :: iterator it, it1;
+        for(int i=0; i<len ; i++){
+            it = find(v1.begin(),v1.end(),s[i]);  // cheaking for s[i] in v1
+            if(it != v1.end()){
+                // s[i] present in v1
+                int count = 1;
+                it1 = v1.begin();
+
+                // Counting the number of element between it and it1
+                while(it1 != it){
+                    it1++;
+                    count++;
+                }
+
+                // erase element element btw it and it1
+                if(it == v1.begin()){
+                    v1.erase(it);
+                }
+                else {
+                    v1.erase(v1.begin(), ++it);
+                }
+
+                v1.push_back(s[i]);
+                curlen++;
+                curlen -= count;
+            }
+            else{
+                // s[i] not present in v1
+                v1.push_back(s[i]);
+                curlen++;
+            }
+
+            max = (curlen > max) ? curlen:max;
+        }
+
+        return max;
+    }
+};
