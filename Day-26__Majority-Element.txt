@@ -1,0 +1,41 @@
+# My Solution
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        map<int,int> mp;
+
+        for(int i=0; i<nums.size(); i++){
+            mp[nums[i]]++;
+        }
+
+        for(auto j=mp.begin(); j!=mp.end(); j++){
+            if(j->second > nums.size()/2){
+                return j->first;
+            }
+        }
+        return -1;
+    }
+};
+
+
+
+# Solution
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int count =0;
+        int majority=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(count==0)
+            majority=nums[i];
+        
+            if(majority==nums[i])
+                count+=1;
+            else
+                count-=1;
+        }
+        return majority;
+    }
+};
