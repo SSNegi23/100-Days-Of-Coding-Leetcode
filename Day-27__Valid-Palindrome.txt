@@ -4,16 +4,16 @@ public:
         if (s.size()<=1) return true;
 
         // to lower case
-        // transform(s.begin(), s.end(), s.begin(), ::tolower);
+        transform(s.begin(), s.end(), s.begin(), ::tolower);
 
         int ptr1=0, ptr2=s.size()-1;
 
         while(ptr1<ptr2){
-            // We will use while here instead of if bcz ", " has to be surpassed at same time
+            // We will use while here instead as ", " has to be surpassed at same time
             while(ptr1<ptr2 && !isalnum(s[ptr1])) ptr1++;
             while(ptr1<ptr2 && !isalnum(s[ptr2])) ptr2--;
 
-            if(ptr1<ptr2 && tolower(s[ptr1])!=tolower(s[ptr2])) return false;
+            if(ptr1<ptr2 && s[ptr1]!=s[ptr2]) return false;
 
             ptr1++;
             ptr2--;
