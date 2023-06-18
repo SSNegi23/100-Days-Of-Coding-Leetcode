@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        map<int,int> m;   // set can also be used - unordered
+        vector<int> v;
+
+        for(int i=0; i<nums1.size(); i++){
+            m[nums1[i]]=1;
+        }
+
+        for(int i=0; i<nums2.size(); i++){
+            if(m.count(nums2[i])){
+                m[nums2[i]] = 3;
+            }
+            // m[nums2[i]] = m[nums2[i]]+2;
+        }
+
+        for(auto x:m){
+            if(x.second>2){
+                v.push_back(x.first);
+            }
+        }
+
+        return v;
+    }
+};
