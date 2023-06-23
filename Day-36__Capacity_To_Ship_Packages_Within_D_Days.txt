@@ -1,0 +1,48 @@
+// Book Allocation Problem - Variation
+
+class Solution {
+public:
+    bool isPossible(vector<int>& weights, int days, int mid){
+        int dayCount=1;
+        int daySum=0;
+
+        for(int i=0; i<weights.size(); i++){
+            if(daySum+weights[i]<=mid){
+                daySum+=weights[i];
+            }
+            else{
+                dayCount++;
+                if(dayCount>days || weights[i]>mid) return false;
+                daySum=weights[i];
+            }
+        }
+
+        return true;
+    }
+
+    int shipWithinDays(vector<int>& weights, int days) {
+        int s=0;
+        long long int sum=0;
+        int ans=-1;
+
+        for(int i=0; i<weights.size(); i++){
+            sum+=weights[i];
+        }
+
+        long long int e=sum;
+
+        while(s<=e){
+            int mid=s+(e-s)/2;
+
+            if(isPossible(weights,days,mid)){
+                ans=mid;
+                e=mid-1;
+            }
+            else{
+                s=mid+1;
+            }
+        }
+
+        return ans;
+    }
+};
