@@ -1,0 +1,23 @@
+bool cmp(pair<char,int>& a, pair<char,int>& b) {
+    return a.second>b.second;
+}
+
+class Solution {
+public:
+    string frequencySort(string s) {
+        map<char,int> m;
+        for(char c:s) {
+            m[c]++;
+        }
+        vector<pair<char,int>> A;
+        for(auto& it: m) {
+            A.push_back(it);
+        }
+        sort(A.begin(), A.end(), cmp);
+        string ans="";
+        for(auto &x: A) {
+            ans+=string(x.second,x.first);
+        }
+        return ans;
+    }
+};
